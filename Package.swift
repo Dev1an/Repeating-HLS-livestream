@@ -11,11 +11,17 @@ let package = Package(
             name: "RepeatingHls",
             targets: ["RepeatingHls"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/httpswift/swifter", .upToNextMajor(from: "1.5.0")),
+    ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "RepeatingHls"),
+            name: "RepeatingHls",
+            dependencies: [.product(name: "Swifter", package: "swifter")],
+            resources: [.process("Resources")]
+        ),
         .testTarget(
             name: "RepeatingHlsTests",
             dependencies: ["RepeatingHls"]),

@@ -2,11 +2,14 @@ import XCTest
 @testable import RepeatingHls
 
 final class RepeatingHlsTests: XCTestCase {
-    func testExample() throws {
-        // XCTest Documentation
-        // https://developer.apple.com/documentation/xctest
-
-        // Defining Test Cases and Test Methods
-        // https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods
+    func testExample() async throws {
+        let gen = ManifestGenerator()
+        print(gen.dateFormatStyle.format(gen.startupTime))
+        print(gen.dateFormatStyle.format(Date()))
+        print(ManifestGenerator.versionHeader)
+        print(gen.generate())
+    }
+    
+    func testResources() async throws {
     }
 }
