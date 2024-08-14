@@ -4,7 +4,7 @@ import XCTest
 final class RepeatingHlsTests: XCTestCase {
     func testExample() async throws {
         let gen = ManifestGenerator()
-        print(gen.dateFormatStyle.format(gen.startupTime))
+        print(gen.dateFormatStyle.format(gen.streamStartDate))
         print(gen.dateFormatStyle.format(Date()))
         print(ManifestGenerator.versionHeader)
         print(gen.generate())

@@ -1,7 +1,6 @@
 import Foundation
 import Swifter
 
-@available(macOS 12.0, *)
 public class SwifterServer {
     let server = HttpServer()
     
@@ -9,7 +8,7 @@ public class SwifterServer {
         let loader = URLSession(configuration: .default)
         var files = [Data]()
         for file in 0..<10 {
-            files.append(try await Self.loadFile(number: file, loader: loader))
+            files.append(try await ResourceLoader.loadFile(number: file, loader: loader))
         }
         let backingStore = GenericServer(
             manifest: ManifestGenerator(),
@@ -28,16 +27,5 @@ public class SwifterServer {
     
     public func start() throws {
         try server.start()
-    }
-    
-    static func loadFile(number: Int, loader: URLSession) async throws -> Data {
-        guard let url = Bundle.module.url(forResource: "fileSequence\(number)", withExtension: "ts") else {
-            throw ResourceNotFound(number: number)
-        }
-        return try await loader.data(from: url).0
-    }
-    
-    struct ResourceNotFound: Error {
-        let number: Int
-    }
+    }    
 }

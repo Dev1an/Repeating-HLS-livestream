@@ -7,7 +7,6 @@
 
 import Foundation
 
-@available(macOS 12.0, *)
 struct GenericServer {
     let manifest: ManifestGenerator
     let files: [Data]    
